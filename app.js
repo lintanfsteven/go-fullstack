@@ -1,18 +1,19 @@
+// mpd mongoDB : 25IyLMJS0NZNWjvb
+
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
-const path = require('path');
+const path = require("path");
 
-const stuffRoutes = require('./routes/stuff');
-const userRoutes = require('./routes/user');
+const saucesRoutes = require('./routes/sauces');
+const userRoutes = require("./routes/user")
 
-mongoose.connect('mongodb+srv://spou:4F99a16e.@atlascluster.jhlnc.mongodb.net/?retryWrites=true&w=majority',
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => console.log('Connexion à MongoDB réussie !'))
-    .catch(() => console.log('Connexion à MongoDB échouée'));
+mongoose.connect('mongodb+srv://Aexxyz:25IyLMJS0NZNWjvb@cluster0.mdbcb.mongodb.net/piiquante?retryWrites=true&w=majority',
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+const app = express();
 
 app.use(express.json());
 
@@ -23,9 +24,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
-app.use('/api/stuff', stuffRoutes);
+app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);
 
 module.exports = app;
